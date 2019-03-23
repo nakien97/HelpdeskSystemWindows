@@ -466,7 +466,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(628, 594);
+            this.ClientSize = new System.Drawing.Size(644, 585);
             this.Controls.Add(this.tabTechnican);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);

@@ -68,6 +68,7 @@
     <Compile Include="frmTechnician.Designer.cs">
       <DependentUpon>frmTechnician.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyPublic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmLogin.resx">

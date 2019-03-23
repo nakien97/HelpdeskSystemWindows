@@ -59,10 +59,12 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.imageAvatar = new System.Windows.Forms.PictureBox();
             this.btnChange = new System.Windows.Forms.Button();
             this.pgTicket = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pnImage = new System.Windows.Forms.Panel();
             this.txtSubject = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
@@ -81,7 +83,6 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.picPhotoProfile = new System.Windows.Forms.PictureBox();
-            this.imageAvatar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.pgFAQ.SuspendLayout();
@@ -89,6 +90,7 @@
             this.pgProfile.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageAvatar)).BeginInit();
             this.pgTicket.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -96,7 +98,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.TabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPhotoProfile)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageAvatar)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -195,7 +196,7 @@
             this.pgFAQ.Margin = new System.Windows.Forms.Padding(2);
             this.pgFAQ.Name = "pgFAQ";
             this.pgFAQ.Padding = new System.Windows.Forms.Padding(2);
-            this.pgFAQ.Size = new System.Drawing.Size(616, 469);
+            this.pgFAQ.Size = new System.Drawing.Size(616, 498);
             this.pgFAQ.TabIndex = 3;
             this.pgFAQ.Text = "FAQ";
             this.pgFAQ.UseVisualStyleBackColor = true;
@@ -270,7 +271,7 @@
             this.pgProfile.Margin = new System.Windows.Forms.Padding(2);
             this.pgProfile.Name = "pgProfile";
             this.pgProfile.Padding = new System.Windows.Forms.Padding(2);
-            this.pgProfile.Size = new System.Drawing.Size(616, 469);
+            this.pgProfile.Size = new System.Drawing.Size(616, 498);
             this.pgProfile.TabIndex = 2;
             this.pgProfile.Text = "Profile";
             // 
@@ -390,6 +391,18 @@
             this.panel4.Size = new System.Drawing.Size(184, 262);
             this.panel4.TabIndex = 18;
             // 
+            // imageAvatar
+            // 
+            this.imageAvatar.BackColor = System.Drawing.Color.DarkGray;
+            this.imageAvatar.Image = ((System.Drawing.Image)(resources.GetObject("imageAvatar.Image")));
+            this.imageAvatar.Location = new System.Drawing.Point(20, 21);
+            this.imageAvatar.Margin = new System.Windows.Forms.Padding(2);
+            this.imageAvatar.Name = "imageAvatar";
+            this.imageAvatar.Size = new System.Drawing.Size(141, 161);
+            this.imageAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imageAvatar.TabIndex = 3;
+            this.imageAvatar.TabStop = false;
+            // 
             // btnChange
             // 
             this.btnChange.Location = new System.Drawing.Point(51, 200);
@@ -408,7 +421,7 @@
             this.pgTicket.Margin = new System.Windows.Forms.Padding(2);
             this.pgTicket.Name = "pgTicket";
             this.pgTicket.Padding = new System.Windows.Forms.Padding(2);
-            this.pgTicket.Size = new System.Drawing.Size(616, 469);
+            this.pgTicket.Size = new System.Drawing.Size(616, 498);
             this.pgTicket.TabIndex = 1;
             this.pgTicket.Text = "My Ticket";
             this.pgTicket.UseVisualStyleBackColor = true;
@@ -422,12 +435,13 @@
             this.tabControl2.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(606, 467);
+            this.tabControl2.Size = new System.Drawing.Size(606, 496);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.pnImage);
             this.tabPage1.Controls.Add(this.txtSubject);
             this.tabPage1.Controls.Add(this.btnCancel);
             this.tabPage1.Controls.Add(this.btnConfirm);
@@ -444,9 +458,18 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(598, 437);
+            this.tabPage1.Size = new System.Drawing.Size(598, 466);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Add New Problem";
+            // 
+            // pnImage
+            // 
+            this.pnImage.BackColor = System.Drawing.Color.Transparent;
+            this.pnImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnImage.Location = new System.Drawing.Point(31, 291);
+            this.pnImage.Name = "pnImage";
+            this.pnImage.Size = new System.Drawing.Size(464, 100);
+            this.pnImage.TabIndex = 36;
             // 
             // txtSubject
             // 
@@ -463,7 +486,7 @@
             this.btnCancel.BackColor = System.Drawing.Color.MidnightBlue;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCancel.Location = new System.Drawing.Point(479, 384);
+            this.btnCancel.Location = new System.Drawing.Point(503, 424);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 37);
             this.btnCancel.TabIndex = 35;
@@ -475,7 +498,7 @@
             this.btnConfirm.BackColor = System.Drawing.Color.MidnightBlue;
             this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnConfirm.Location = new System.Drawing.Point(374, 384);
+            this.btnConfirm.Location = new System.Drawing.Point(405, 424);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(90, 37);
             this.btnConfirm.TabIndex = 34;
@@ -485,13 +508,14 @@
             // btnUpload
             // 
             this.btnUpload.ForeColor = System.Drawing.Color.Black;
-            this.btnUpload.Location = new System.Drawing.Point(29, 357);
+            this.btnUpload.Location = new System.Drawing.Point(503, 321);
             this.btnUpload.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(72, 34);
             this.btnUpload.TabIndex = 33;
             this.btnUpload.Text = "Upload";
             this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
             // 
             // label16
             // 
@@ -553,7 +577,7 @@
             this.tabPage4.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage4.Size = new System.Drawing.Size(598, 437);
+            this.tabPage4.Size = new System.Drawing.Size(598, 466);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Status Report";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -609,7 +633,7 @@
             this.TabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.TabControl1.Name = "TabControl1";
             this.TabControl1.SelectedIndex = 0;
-            this.TabControl1.Size = new System.Drawing.Size(624, 499);
+            this.TabControl1.Size = new System.Drawing.Size(624, 528);
             this.TabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.TabControl1.TabIndex = 4;
             // 
@@ -622,18 +646,6 @@
             this.picPhotoProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picPhotoProfile.TabIndex = 13;
             this.picPhotoProfile.TabStop = false;
-            // 
-            // imageAvatar
-            // 
-            this.imageAvatar.BackColor = System.Drawing.Color.DarkGray;
-            this.imageAvatar.Image = ((System.Drawing.Image)(resources.GetObject("imageAvatar.Image")));
-            this.imageAvatar.Location = new System.Drawing.Point(20, 21);
-            this.imageAvatar.Margin = new System.Windows.Forms.Padding(2);
-            this.imageAvatar.Name = "imageAvatar";
-            this.imageAvatar.Size = new System.Drawing.Size(141, 161);
-            this.imageAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imageAvatar.TabIndex = 3;
-            this.imageAvatar.TabStop = false;
             // 
             // frmEmployee
             // 
@@ -655,6 +667,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmEmployee_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.pgFAQ.ResumeLayout(false);
@@ -664,6 +677,7 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imageAvatar)).EndInit();
             this.pgTicket.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -672,7 +686,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.TabControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picPhotoProfile)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageAvatar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -732,5 +745,6 @@
         private System.Windows.Forms.TextBox txtSearchFAQ;
         private System.Windows.Forms.PictureBox picPhotoProfile;
         private System.Windows.Forms.PictureBox imageAvatar;
+        private System.Windows.Forms.Panel pnImage;
     }
 }
