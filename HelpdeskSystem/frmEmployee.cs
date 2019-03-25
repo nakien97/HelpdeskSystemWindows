@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.Sql;
+using System.Data.SqlClient;
 
 namespace HelpdeskSystem
 {
@@ -15,26 +17,22 @@ namespace HelpdeskSystem
         public frmEmployee()
         {
             InitializeComponent();
+            Show_YC(dgvYC);
         }
-
-        private void linkOut_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        string userName = MyPublic.USERNAME;
+        private void frmEmployee_Load(object sender, EventArgs e)
         {
-
+            this.fAQTableAdapter.Fill(this.helpdeskSystemDataSet.FAQ);
+            User_lb.Text = "Welcome: " + MyPublic.USERNAME;
+            SqlConnection con = new SqlConnection("Data Source=DESKTOP-FS2GKEF;Initial Catalog=HelpdeskSystem;Integrated Security=True");
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM NHANVIEN WHERE NV_USERNAME='" + MyPublic.USERNAME + "'", con);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            txtPurview.Text = MyPublic.PURVIEW;
+            txtName.Text = dt.Rows[0][3].ToString();
+            txtPhone.Text = dt.Rows[0][4].ToString();
+            txtEmail.Text = dt.Rows[0][5].ToString();
         }
-
-        private void linkOut_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (MessageBox.Show("Do you really want to sign out?", "Notify", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-            {
-                frmLogin login = new frmLogin();
-                login.ShowDialog();
-                Close();
-            }
-            
-            
-        }
-
-       
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -50,7 +48,7 @@ namespace HelpdeskSystem
 
         private void txtSearchFAQ_Enter(object sender, EventArgs e)
         {
-            if(txtSearchFAQ.Text.Equals("ID or keyword"))
+            if (txtSearchFAQ.Text.Equals("ID or keyword"))
             {
                 txtSearchFAQ.Text = "";
                 txtSearchFAQ.ForeColor = Color.Black;
@@ -68,7 +66,7 @@ namespace HelpdeskSystem
                 int x = 20;
                 int y = 20;
                 int maxHeight = -1;
-                foreach(string imgUrl in files)
+                foreach (string imgUrl in files)
                 {
                     PictureBox picture = new PictureBox();
                     picture.Image = Image.FromFile(imgUrl);
@@ -76,22 +74,60 @@ namespace HelpdeskSystem
                     picture.SizeMode = PictureBoxSizeMode.StretchImage;
                     x += picture.Width + 10;
                     maxHeight = Math.Max(picture.Height, maxHeight);
-                    if(x > this.ClientSize.Width - 100)
+                    if (x > this.ClientSize.Width - 100)
                     {
                         x = 20;
                         y += maxHeight + 10;
                     }
                     this.pnImage.Controls.Add(picture);
-                  
-
                 }
-                
+
             }
         }
 
         private void frmEmployee_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Close();
+            if (MessageBox.Show("Do you really want to sign out?", "Notify", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+            {
+               // frmLogin login = new frmLogin();
+               // login.ShowDialog();
+                this.Close();
+            }
+        }
+        private void linkOut_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (MessageBox.Show("Do you really want to sign out?", "Notify", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+            {
+               // frmLogin login = new frmLogin();
+               // login.ShowDialog();
+                this.Close();
+            }
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            SqlCommand sqlCmd;
+            SqlDataReader sqlDr;
+            string query;
+            try
+            {
+                MyPublic.ConnectDatabase();
+                if (MyPublic.conn.State == ConnectionState.Open)
+                {
+                    query = "INSERT INTO YEUCAU()";
+                    sqlCmd = new SqlCommand(query, MyPublic.conn);
+                    sqlCmd.Parameters.AddWithValue("",richtxtDescription);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Connect failed! " + ex.Message);
+            }
+        }
+        private void Show_YC(DataGridView dgv)
+        {     
         }
     }
-}
+ }
+
+
