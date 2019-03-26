@@ -20,11 +20,10 @@ namespace HelpdeskSystem
             Show_YC(dgvYC);
         }
         string userName = MyPublic.USERNAME;
+        SqlConnection con = new SqlConnection(@"server=DESKTOP-FS2GKEF; database = HelpdeskSystem; User Id=sa; Password=1234");
         private void frmEmployee_Load(object sender, EventArgs e)
         {
-            this.fAQTableAdapter.Fill(this.helpdeskSystemDataSet.FAQ);
             User_lb.Text = "Welcome: " + MyPublic.USERNAME;
-            SqlConnection con = new SqlConnection("Data Source=DESKTOP-FS2GKEF;Initial Catalog=HelpdeskSystem;Integrated Security=True");
             SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM NHANVIEN WHERE NV_USERNAME='" + MyPublic.USERNAME + "'", con);
             DataTable dt = new DataTable();
             sda.Fill(dt);
@@ -104,6 +103,7 @@ namespace HelpdeskSystem
             }
         }
 
+
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             SqlCommand sqlCmd;
@@ -127,6 +127,7 @@ namespace HelpdeskSystem
         private void Show_YC(DataGridView dgv)
         {     
         }
+
     }
  }
 

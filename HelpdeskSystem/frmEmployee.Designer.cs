@@ -1,8 +1,4 @@
-﻿
-
-
-
-namespace HelpdeskSystem
+﻿namespace HelpdeskSystem
 {
     partial class frmEmployee
     {
@@ -34,8 +30,6 @@ namespace HelpdeskSystem
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEmployee));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -47,21 +41,18 @@ namespace HelpdeskSystem
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.linkOut = new System.Windows.Forms.LinkLabel();
             this.pgFAQ = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.fAQMADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fAQNOIDUNGDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fAQBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.helpdeskSystemDataSet = new HelpdeskSystem.HelpdeskSystemDataSet();
+            this.dgvFAQ = new System.Windows.Forms.DataGridView();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearchFAQ = new System.Windows.Forms.TextBox();
+            this.fAQBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pgProfile = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
             this.txtPurview = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -89,13 +80,11 @@ namespace HelpdeskSystem
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.picPhotoProfile = new System.Windows.Forms.PictureBox();
             this.User_lb = new System.Windows.Forms.Label();
-            this.fAQTableAdapter = new HelpdeskSystem.HelpdeskSystemDataSetTableAdapters.FAQTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.pgFAQ.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFAQ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fAQBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.helpdeskSystemDataSet)).BeginInit();
             this.pgProfile.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -130,10 +119,10 @@ namespace HelpdeskSystem
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(199, 80);
+            this.pictureBox1.Size = new System.Drawing.Size(199, 82);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
@@ -141,7 +130,7 @@ namespace HelpdeskSystem
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(37, 761);
+            this.label6.Location = new System.Drawing.Point(54, 757);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(209, 17);
             this.label6.TabIndex = 11;
@@ -151,7 +140,7 @@ namespace HelpdeskSystem
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(13, 759);
+            this.label7.Location = new System.Drawing.Point(29, 755);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(19, 18);
             this.label7.TabIndex = 12;
@@ -169,7 +158,7 @@ namespace HelpdeskSystem
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(708, 60);
+            this.pictureBox2.Location = new System.Drawing.Point(708, 64);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(20, 20);
@@ -184,7 +173,7 @@ namespace HelpdeskSystem
             this.linkOut.DisabledLinkColor = System.Drawing.Color.Black;
             this.linkOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkOut.LinkColor = System.Drawing.Color.Black;
-            this.linkOut.Location = new System.Drawing.Point(733, 60);
+            this.linkOut.Location = new System.Drawing.Point(734, 64);
             this.linkOut.Name = "linkOut";
             this.linkOut.Size = new System.Drawing.Size(74, 20);
             this.linkOut.TabIndex = 8;
@@ -195,60 +184,28 @@ namespace HelpdeskSystem
             // 
             // pgFAQ
             // 
-            this.pgFAQ.Controls.Add(this.dataGridView2);
+            this.pgFAQ.Controls.Add(this.dgvFAQ);
             this.pgFAQ.Controls.Add(this.btnSearch);
             this.pgFAQ.Controls.Add(this.txtSearchFAQ);
             this.pgFAQ.Location = new System.Drawing.Point(4, 29);
             this.pgFAQ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pgFAQ.Name = "pgFAQ";
             this.pgFAQ.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pgFAQ.Size = new System.Drawing.Size(824, 617);
+            this.pgFAQ.Size = new System.Drawing.Size(787, 617);
             this.pgFAQ.TabIndex = 3;
             this.pgFAQ.Text = "FAQ";
             this.pgFAQ.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // dgvFAQ
             // 
-            this.dataGridView2.AllowUserToOrderColumns = true;
-            this.dataGridView2.AutoGenerateColumns = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.fAQMADataGridViewTextBoxColumn,
-            this.fAQNOIDUNGDataGridViewTextBoxColumn});
-            this.dataGridView2.DataSource = this.fAQBindingSource;
-            this.dataGridView2.Location = new System.Drawing.Point(23, 81);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(776, 466);
-            this.dataGridView2.TabIndex = 6;
-            // 
-            // fAQMADataGridViewTextBoxColumn
-            // 
-            this.fAQMADataGridViewTextBoxColumn.DataPropertyName = "FAQ_MA";
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fAQMADataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
-            this.fAQMADataGridViewTextBoxColumn.HeaderText = "ID";
-            this.fAQMADataGridViewTextBoxColumn.Name = "fAQMADataGridViewTextBoxColumn";
-            // 
-            // fAQNOIDUNGDataGridViewTextBoxColumn
-            // 
-            this.fAQNOIDUNGDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fAQNOIDUNGDataGridViewTextBoxColumn.DataPropertyName = "FAQ_NOIDUNG";
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fAQNOIDUNGDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
-            this.fAQNOIDUNGDataGridViewTextBoxColumn.HeaderText = "Content";
-            this.fAQNOIDUNGDataGridViewTextBoxColumn.Name = "fAQNOIDUNGDataGridViewTextBoxColumn";
-            // 
-            // fAQBindingSource
-            // 
-            this.fAQBindingSource.DataMember = "FAQ";
-            this.fAQBindingSource.DataSource = this.helpdeskSystemDataSet;
-            // 
-            // helpdeskSystemDataSet
-            // 
-            this.helpdeskSystemDataSet.DataSetName = "HelpdeskSystemDataSet";
-            this.helpdeskSystemDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.dgvFAQ.AllowUserToOrderColumns = true;
+            this.dgvFAQ.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFAQ.Location = new System.Drawing.Point(23, 81);
+            this.dgvFAQ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvFAQ.Name = "dgvFAQ";
+            this.dgvFAQ.RowTemplate.Height = 24;
+            this.dgvFAQ.Size = new System.Drawing.Size(743, 466);
+            this.dgvFAQ.TabIndex = 6;
             // 
             // btnSearch
             // 
@@ -258,7 +215,7 @@ namespace HelpdeskSystem
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(748, 20);
+            this.btnSearch.Location = new System.Drawing.Point(715, 20);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(51, 47);
@@ -268,7 +225,7 @@ namespace HelpdeskSystem
             // txtSearchFAQ
             // 
             this.txtSearchFAQ.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtSearchFAQ.Location = new System.Drawing.Point(524, 38);
+            this.txtSearchFAQ.Location = new System.Drawing.Point(492, 30);
             this.txtSearchFAQ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearchFAQ.Name = "txtSearchFAQ";
             this.txtSearchFAQ.Size = new System.Drawing.Size(217, 27);
@@ -285,7 +242,7 @@ namespace HelpdeskSystem
             this.pgProfile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pgProfile.Name = "pgProfile";
             this.pgProfile.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pgProfile.Size = new System.Drawing.Size(824, 617);
+            this.pgProfile.Size = new System.Drawing.Size(787, 617);
             this.pgProfile.TabIndex = 2;
             this.pgProfile.Text = "Profile";
             // 
@@ -332,6 +289,19 @@ namespace HelpdeskSystem
             this.txtEmail.Size = new System.Drawing.Size(381, 23);
             this.txtEmail.TabIndex = 15;
             // 
+            // txtName
+            // 
+            this.txtName.BackColor = System.Drawing.Color.White;
+            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtName.Enabled = false;
+            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.ForeColor = System.Drawing.Color.Black;
+            this.txtName.Location = new System.Drawing.Point(161, 28);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(381, 23);
+            this.txtName.TabIndex = 10;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -368,19 +338,6 @@ namespace HelpdeskSystem
             this.label11.Size = new System.Drawing.Size(72, 25);
             this.label11.TabIndex = 14;
             this.label11.Text = "Email:";
-            // 
-            // txtName
-            // 
-            this.txtName.BackColor = System.Drawing.Color.White;
-            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtName.Enabled = false;
-            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.ForeColor = System.Drawing.Color.Black;
-            this.txtName.Location = new System.Drawing.Point(161, 28);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(381, 23);
-            this.txtName.TabIndex = 10;
             // 
             // label10
             // 
@@ -597,7 +554,7 @@ namespace HelpdeskSystem
             this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage4.Size = new System.Drawing.Size(800, 577);
+            this.tabPage4.Size = new System.Drawing.Size(824, 593);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Status Report";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -611,11 +568,11 @@ namespace HelpdeskSystem
             this.Column3,
             this.Column4,
             this.Column5});
-            this.dgvYC.Location = new System.Drawing.Point(5, 58);
+            this.dgvYC.Location = new System.Drawing.Point(24, 58);
             this.dgvYC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvYC.Name = "dgvYC";
             this.dgvYC.RowTemplate.Height = 24;
-            this.dgvYC.Size = new System.Drawing.Size(776, 462);
+            this.dgvYC.Size = new System.Drawing.Size(744, 514);
             this.dgvYC.TabIndex = 0;
             // 
             // Column1
@@ -679,10 +636,6 @@ namespace HelpdeskSystem
             this.User_lb.TabIndex = 14;
             this.User_lb.Text = "label1";
             // 
-            // fAQTableAdapter
-            // 
-            this.fAQTableAdapter.ClearBeforeFill = true;
-            // 
             // frmEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -690,7 +643,7 @@ namespace HelpdeskSystem
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(839, 803);
+            this.ClientSize = new System.Drawing.Size(839, 810);
             this.Controls.Add(this.User_lb);
             this.Controls.Add(this.picPhotoProfile);
             this.Controls.Add(this.label7);
@@ -710,9 +663,8 @@ namespace HelpdeskSystem
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.pgFAQ.ResumeLayout(false);
             this.pgFAQ.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFAQ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fAQBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.helpdeskSystemDataSet)).EndInit();
             this.pgProfile.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -773,7 +725,7 @@ namespace HelpdeskSystem
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.TabControl TabControl1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgvFAQ;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSearchFAQ;
         private System.Windows.Forms.PictureBox picPhotoProfile;
@@ -782,11 +734,8 @@ namespace HelpdeskSystem
         private System.Windows.Forms.Label User_lb;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbProlem;
-        private HelpdeskSystemDataSet helpdeskSystemDataSet;
         private System.Windows.Forms.BindingSource fAQBindingSource;
-        private HelpdeskSystemDataSetTableAdapters.FAQTableAdapter fAQTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn fAQMADataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fAQNOIDUNGDataGridViewTextBoxColumn;
     }
 }
-
