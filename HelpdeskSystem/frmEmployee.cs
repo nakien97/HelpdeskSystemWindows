@@ -115,7 +115,7 @@ namespace HelpdeskSystem
         public DataTable Show_YC()
         {
             MyPublic.ConnectDatabase();
-            string query = "SELECT * FROM YEUCAU";
+            string query = "SELECT * FROM YEUCAU WHERE NV_USERNAME='" + MyPublic.USERNAME + "'";
             SqlCommand sqlCm = new SqlCommand(query, MyPublic.conn);
             SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCm);
             DataTable dt = new DataTable();
@@ -128,24 +128,18 @@ namespace HelpdeskSystem
         private void btnAdd_Click(object sender, EventArgs e)
         {
             cbProlem.Items.Clear();
-            string query;
             try
             {
                       MyPublic.ConnectDatabase();
-                      query = "SELET * FROM LOAI_SUCO";
-                      SqlCommand sqlCm = new SqlCommand(query, MyPublic.conn);
-                      sqlCm.ExecuteNonQuery();
                       SqlDataAdapter sqlDa = new SqlDataAdapter("SELET * FROM LOAI_SUCO",MyPublic.conn);
                       DataTable dt = new DataTable();
                       sqlDa.Fill(dt);
-                        foreach (DataRow dr in dt.Rows)
-                        {
-                           cbProlem.Items.Add(dr["LSC_TEN"].ToString());
-                        }
-                           MyPublic.conn.Close();
+                      cbProlem.ValueMember = "LSC_TEN";
+                      cbProlem.DataSource = dt;
+                      MyPublic.conn.Close();
             }  catch (Exception)
                 {
-                    MessageBox.Show("Connect failed! ");
+                    MessageBox.Show("Connect database failed! ");
                 }
             ResetFields(true);
         }
