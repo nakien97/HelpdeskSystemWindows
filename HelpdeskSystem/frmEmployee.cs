@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.Sql;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace HelpdeskSystem
 {
@@ -17,14 +11,20 @@ namespace HelpdeskSystem
         public frmEmployee()
         {
             InitializeComponent();
-            Show_YC(dgvYC);
+            dgvFAQ.DataSource = Show_FAQ();
+            dgvYC.DataSource = Show_YC();
         }
-        string userName = MyPublic.USERNAME;
-        SqlConnection con = new SqlConnection(@"server=DESKTOP-FS2GKEF; database = HelpdeskSystem; User Id=sa; Password=1234");
+        string suco;
         private void frmEmployee_Load(object sender, EventArgs e)
         {
-            User_lb.Text = "Welcome: " + MyPublic.USERNAME;
-            SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM NHANVIEN WHERE NV_USERNAME='" + MyPublic.USERNAME + "'", con);
+               User_lb.Text = "Welcome: " + MyPublic.USERNAME;
+               Load_Profile();  
+        }
+
+        private void Load_Profile()
+        {
+            MyPublic.ConnectDatabase();
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM NHANVIEN WHERE NV_USERNAME='" + MyPublic.USERNAME + "'", MyPublic.conn);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             txtPurview.Text = MyPublic.PURVIEW;
@@ -32,6 +32,7 @@ namespace HelpdeskSystem
             txtPhone.Text = dt.Rows[0][4].ToString();
             txtEmail.Text = dt.Rows[0][5].ToString();
         }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -88,8 +89,6 @@ namespace HelpdeskSystem
         {
             if (MessageBox.Show("Do you really want to sign out?", "Notify", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {
-               // frmLogin login = new frmLogin();
-               // login.ShowDialog();
                 this.Close();
             }
         }
@@ -97,38 +96,86 @@ namespace HelpdeskSystem
         {
             if (MessageBox.Show("Do you really want to sign out?", "Notify", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {
-               // frmLogin login = new frmLogin();
-               // login.ShowDialog();
                 this.Close();
             }
         }
 
-
-        private void btnConfirm_Click(object sender, EventArgs e)
+        public DataTable Show_FAQ()
         {
-            SqlCommand sqlCmd;
-            SqlDataReader sqlDr;
+            MyPublic.ConnectDatabase();
+            string query = "SELECT * FROM FAQ";
+            SqlCommand sqlCm = new SqlCommand(query, MyPublic.conn);
+            SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCm);
+            DataTable dt = new DataTable();
+            sqlDa.Fill(dt);
+            MyPublic.conn.Close();
+            sqlDa.Dispose();
+            return dt;
+        }
+        public DataTable Show_YC()
+        {
+            MyPublic.ConnectDatabase();
+            string query = "SELECT * FROM YEUCAU";
+            SqlCommand sqlCm = new SqlCommand(query, MyPublic.conn);
+            SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCm);
+            DataTable dt = new DataTable();
+            sqlDa.Fill(dt);
+            MyPublic.conn.Close();
+            sqlDa.Dispose();
+            return dt;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            cbProlem.Items.Clear();
             string query;
             try
             {
-                MyPublic.ConnectDatabase();
-                if (MyPublic.conn.State == ConnectionState.Open)
+                      MyPublic.ConnectDatabase();
+                      query = "SELET * FROM LOAI_SUCO";
+                      SqlCommand sqlCm = new SqlCommand(query, MyPublic.conn);
+                      sqlCm.ExecuteNonQuery();
+                      SqlDataAdapter sqlDa = new SqlDataAdapter("SELET * FROM LOAI_SUCO",MyPublic.conn);
+                      DataTable dt = new DataTable();
+                      sqlDa.Fill(dt);
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                           cbProlem.Items.Add(dr["LSC_TEN"].ToString());
+                        }
+                           MyPublic.conn.Close();
+            }  catch (Exception)
                 {
-                    query = "INSERT INTO YEUCAU()";
-                    sqlCmd = new SqlCommand(query, MyPublic.conn);
-                    sqlCmd.Parameters.AddWithValue("",richtxtDescription);
+                    MessageBox.Show("Connect failed! ");
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Connect failed! " + ex.Message);
-            }
+            ResetFields(true);
         }
-        private void Show_YC(DataGridView dgv)
-        {     
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            ResetFields(false);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbProlem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if (cbProlem.SelectedIndex == -1) return;
+           // suco = cbProlem.Text;
+        }
+
+        void ResetFields(bool status)
+        {
+            txtDescription.Clear();
+            cbProlem.SelectedIndex = -1;
+            btnSave.Enabled = status;
+            btnCancel.Enabled = status;
+            btnAdd.Enabled = !status;
         }
 
     }
- }
+}
 
 
