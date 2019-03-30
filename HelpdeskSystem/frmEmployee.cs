@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace HelpdeskSystem
@@ -11,15 +12,13 @@ namespace HelpdeskSystem
         public frmEmployee()
         {
             InitializeComponent();
-            dgvFAQ.DataSource = Show_FAQ();
-            dgvYC.DataSource = Show_YC();
         }
-        string suco;
         private void frmEmployee_Load(object sender, EventArgs e)
         {
                User_lb.Text = "Welcome: " + MyPublic.USERNAME;
                Load_Profile();
-               Load_Avatar();
+               dgvFAQ.DataSource = Show_FAQ();
+               dgvYC.DataSource = Show_YC();
         }
 
         private void Load_Profile()
@@ -32,39 +31,39 @@ namespace HelpdeskSystem
             txtName.Text = dt.Rows[0][3].ToString();
             txtPhone.Text = dt.Rows[0][4].ToString();
             txtEmail.Text = dt.Rows[0][5].ToString();
+            if (dt.Rows[0][6].ToString() != null)
+            {
+                imageAvatar.ImageLocation = dt.Rows[0][6].ToString();
+                picPhotoProfile.ImageLocation = dt.Rows[0][6].ToString();
+            }
         }
 
 
         private void btnChange_Click(object sender, EventArgs e)
         {
-            OpenFileDialog open = new OpenFileDialog();
-            open.InitialDirectory = "C:\\";
-            open.Filter = "Image Files (*.jpg)|*.jpg|All Files(*.*)|*.*";
-            open.FilterIndex = 1;
-            if(open.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            String imageLocation = "";
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = " jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*)|*.*";
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                if (open.CheckFileExists)
-                {
-                    MyPublic.ConnectDatabase();
-                    string CorrectFilename = System.IO.Path.GetFileName(open.FileName);
-                    SqlCommand cmd = new SqlCommand("UPDATE NHANVIEN SET NV_AVATAR = '\\Images\\"+ CorrectFilename+ "' WHERE NV_USERNAME='" + MyPublic.USERNAME + "' ",MyPublic.conn);
-                    cmd.ExecuteNonQuery();
-                    MyPublic.conn.Close();
-                    string patch = Application.StartupPath.Substring(0,(Application.StartupPath.Length -10));
-                    System.IO.File.Copy(open.FileName,patch + "\\Images\\" + CorrectFilename);
-                    MessageBox.Show("Succesfully");
-                }
+                imageLocation = dialog.FileName;
+                imageAvatar.ImageLocation = imageLocation;
+                changeAvatar(imageLocation);
             }
         }
-        private void Load_Avatar()
+        private void changeAvatar(string imageLocation)
         {
-            MyPublic.ConnectDatabase();
-            SqlDataAdapter sda = new SqlDataAdapter("Select NV_AVATAR FROM NHANVIEN WHERE NV_USERNAME='" + MyPublic.USERNAME + "'",MyPublic.conn);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            string paths = Application.StartupPath.Substring(0, (Application.StartupPath.Length - 10));
-            imageAvatar.Image = Image.FromFile(paths + dt.Rows[0]["NV_AVATAR"].ToString());
-            picPhotoProfile.Image = Image.FromFile(paths + dt.Rows[0]["NV_AVATAR"].ToString());
+                MyPublic.ConnectDatabase();
+                SqlCommand sqlCmd;
+                string newPath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName, "HelpdeskSystem") + "\\Avatar\\" + MyPublic.USERNAME + ".jpg";
+                File.Copy(imageLocation, newPath, true);
+                string query = "UPDATE NHANVIEN SET NV_AVATAR=@avatar WHERE NV_USERNAME=@username";
+                sqlCmd = new SqlCommand(query, MyPublic.conn);
+                sqlCmd.Parameters.AddWithValue("@avatar", newPath);
+                sqlCmd.Parameters.AddWithValue("@username", MyPublic.USERNAME);
+                sqlCmd.ExecuteNonQuery();
+                picPhotoProfile.ImageLocation = newPath;
+
         }
 
 
@@ -76,6 +75,19 @@ namespace HelpdeskSystem
             {
                 txtSearchFAQ.Text = "";
                 txtSearchFAQ.ForeColor = Color.Black;
+            }
+        }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string id = txtSearchFAQ.Text;
+            dgvFAQ.ClearSelection();
+            foreach (DataGridViewRow row in dgvFAQ.Rows)
+            {
+                string data = (string)row.Cells[0].Value;
+                if (id.Equals(data))
+                {
+                    row.Selected = true;
+                }
             }
         }
 
@@ -118,10 +130,7 @@ namespace HelpdeskSystem
         }
         private void linkOut_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (MessageBox.Show("Do you really want to sign out?", "Notify", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-            {
                 this.Close();
-            }
         }
 
         public DataTable Show_FAQ()
@@ -154,13 +163,15 @@ namespace HelpdeskSystem
             cbProlem.Items.Clear();
             try
             {
-                      MyPublic.ConnectDatabase();
-                      SqlDataAdapter sqlDa = new SqlDataAdapter("SELET * FROM LOAI_SUCO",MyPublic.conn);
-                      DataTable dt = new DataTable();
-                      sqlDa.Fill(dt);
-                      cbProlem.ValueMember = "LSC_TEN";
-                      cbProlem.DataSource = dt;
-                      MyPublic.conn.Close();
+                string Sql = "select LSC_TEN from LOAI_SUCO";
+                MyPublic.ConnectDatabase();
+                SqlCommand cmd = new SqlCommand(Sql, MyPublic.conn);
+                SqlDataReader DR = cmd.ExecuteReader();
+
+                while (DR.Read())
+                {
+                    cbProlem.Items.Add(DR[0]);
+                }
             }  catch (Exception)
                 {
                     MessageBox.Show("Connect database failed! ");
@@ -193,6 +204,7 @@ namespace HelpdeskSystem
             btnAdd.Enabled = !status;
         }
 
+ 
     }
 }
 
