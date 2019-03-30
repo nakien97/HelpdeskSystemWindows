@@ -18,7 +18,8 @@ namespace HelpdeskSystem
         private void frmEmployee_Load(object sender, EventArgs e)
         {
                User_lb.Text = "Welcome: " + MyPublic.USERNAME;
-               Load_Profile();  
+               Load_Profile();
+               Load_Avatar();
         }
 
         private void Load_Profile()
@@ -34,17 +35,40 @@ namespace HelpdeskSystem
         }
 
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnChange_Click(object sender, EventArgs e)
         {
-            String imageLocation = "";
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = " jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*)|*.*";
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            OpenFileDialog open = new OpenFileDialog();
+            open.InitialDirectory = "C:\\";
+            open.Filter = "Image Files (*.jpg)|*.jpg|All Files(*.*)|*.*";
+            open.FilterIndex = 1;
+            if(open.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                imageLocation = dialog.FileName;
-                imageAvatar.ImageLocation = imageLocation;
+                if (open.CheckFileExists)
+                {
+                    MyPublic.ConnectDatabase();
+                    string CorrectFilename = System.IO.Path.GetFileName(open.FileName);
+                    SqlCommand cmd = new SqlCommand("UPDATE NHANVIEN SET NV_AVATAR = '\\Images\\"+ CorrectFilename+ "' WHERE NV_USERNAME='" + MyPublic.USERNAME + "' ",MyPublic.conn);
+                    cmd.ExecuteNonQuery();
+                    MyPublic.conn.Close();
+                    string patch = Application.StartupPath.Substring(0,(Application.StartupPath.Length -10));
+                    System.IO.File.Copy(open.FileName,patch + "\\Images\\" + CorrectFilename);
+                    MessageBox.Show("Succesfully");
+                }
             }
         }
+        private void Load_Avatar()
+        {
+            MyPublic.ConnectDatabase();
+            SqlDataAdapter sda = new SqlDataAdapter("Select NV_AVATAR FROM NHANVIEN WHERE NV_USERNAME='" + MyPublic.USERNAME + "'",MyPublic.conn);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            string paths = Application.StartupPath.Substring(0, (Application.StartupPath.Length - 10));
+            imageAvatar.Image = Image.FromFile(paths + dt.Rows[0]["NV_AVATAR"].ToString());
+            picPhotoProfile.Image = Image.FromFile(paths + dt.Rows[0]["NV_AVATAR"].ToString());
+        }
+
+
+
 
         private void txtSearchFAQ_Enter(object sender, EventArgs e)
         {

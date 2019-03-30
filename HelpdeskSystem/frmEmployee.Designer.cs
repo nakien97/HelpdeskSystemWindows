@@ -427,7 +427,7 @@
             this.btnChange.TabIndex = 2;
             this.btnChange.Text = "Change Avatar";
             this.btnChange.UseVisualStyleBackColor = true;
-            this.btnChange.Click += new System.EventHandler(this.button2_Click);
+            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
             // 
             // pgTicket
             // 
