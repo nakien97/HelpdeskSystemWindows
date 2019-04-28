@@ -82,6 +82,8 @@
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.picPhotoProfile = new System.Windows.Forms.PictureBox();
             this.User_lb = new System.Windows.Forms.Label();
+            this.txtNamepro = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.pgFAQ.SuspendLayout();
@@ -458,6 +460,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.txtNamepro);
             this.tabPage1.Controls.Add(this.btnSave);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.cbProlem);
@@ -498,7 +502,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(36, 54);
+            this.label1.Location = new System.Drawing.Point(36, 28);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(181, 25);
@@ -508,10 +512,10 @@
             // cbProlem
             // 
             this.cbProlem.FormattingEnabled = true;
-            this.cbProlem.Location = new System.Drawing.Point(240, 55);
+            this.cbProlem.Location = new System.Drawing.Point(234, 29);
             this.cbProlem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbProlem.Name = "cbProlem";
-            this.cbProlem.Size = new System.Drawing.Size(347, 28);
+            this.cbProlem.Size = new System.Drawing.Size(348, 28);
             this.cbProlem.TabIndex = 37;
             this.cbProlem.SelectedIndexChanged += new System.EventHandler(this.cbProlem_SelectedIndexChanged);
             // 
@@ -522,7 +526,7 @@
             this.pnImage.Location = new System.Drawing.Point(41, 390);
             this.pnImage.Margin = new System.Windows.Forms.Padding(4);
             this.pnImage.Name = "pnImage";
-            this.pnImage.Size = new System.Drawing.Size(618, 100);
+            this.pnImage.Size = new System.Drawing.Size(616, 100);
             this.pnImage.TabIndex = 36;
             // 
             // btnCancel
@@ -555,11 +559,12 @@
             // 
             // btnUpload
             // 
+            this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpload.ForeColor = System.Drawing.Color.Black;
-            this.btnUpload.Location = new System.Drawing.Point(664, 420);
+            this.btnUpload.Location = new System.Drawing.Point(664, 412);
             this.btnUpload.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(96, 42);
+            this.btnUpload.Size = new System.Drawing.Size(96, 56);
             this.btnUpload.TabIndex = 33;
             this.btnUpload.Text = "Upload";
             this.btnUpload.UseVisualStyleBackColor = true;
@@ -580,7 +585,7 @@
             // txtDescription
             // 
             this.txtDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescription.Location = new System.Drawing.Point(41, 147);
+            this.txtDescription.Location = new System.Drawing.Point(41, 172);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(719, 178);
@@ -592,7 +597,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label14.Location = new System.Drawing.Point(38, 120);
+            this.label14.Location = new System.Drawing.Point(36, 134);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(209, 25);
@@ -660,6 +665,25 @@
             this.User_lb.Size = new System.Drawing.Size(53, 20);
             this.User_lb.TabIndex = 14;
             this.User_lb.Text = "label1";
+            // 
+            // txtNamepro
+            // 
+            this.txtNamepro.Location = new System.Drawing.Point(234, 85);
+            this.txtNamepro.Name = "txtNamepro";
+            this.txtNamepro.Size = new System.Drawing.Size(505, 27);
+            this.txtNamepro.TabIndex = 40;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label2.Location = new System.Drawing.Point(36, 85);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(164, 25);
+            this.label2.TabIndex = 41;
+            this.label2.Text = "Name problem :";
             // 
             // frmEmployee
             // 
@@ -768,5 +792,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tTMADataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtNamepro;
     }
 }
