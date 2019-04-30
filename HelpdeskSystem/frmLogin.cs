@@ -89,6 +89,10 @@ namespace HelpdeskSystem
                 MessageBox.Show("Username or password incorrect!");
             } 
         }
-        
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
