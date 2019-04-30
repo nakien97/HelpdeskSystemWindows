@@ -63,6 +63,8 @@ namespace HelpdeskSystem
             }
             else if (isLoginSuccess(userName, password)) 
             {
+                txtUsername.Text = "";
+                txtPassword.Text = "";
                 MessageBox.Show("Login successful!");
                 this.Hide();
                 if (MyPublic.PURVIEW.Equals("NV"))
